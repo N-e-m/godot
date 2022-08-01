@@ -450,6 +450,9 @@ public:
 		OPERATION_INTERSECTION,
 		OPERATION_XOR
 	};
+
+	Array decompose_polygon_in_convex(const Vector<Vector2> &p_polygon);
+
 	// 2D polygon boolean operations.
 	Array merge_polygons_2d(const Vector<Vector2> &p_polygon_a, const Vector<Vector2> &p_polygon_b); // Union (add).
 	Array clip_polygons_2d(const Vector<Vector2> &p_polygon_a, const Vector<Vector2> &p_polygon_b); // Difference (subtract).

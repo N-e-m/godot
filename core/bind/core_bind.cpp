@@ -1690,6 +1690,17 @@ Vector<Vector3> _Geometry::clip_polygon(const Vector<Vector3> &p_points, const P
 	return Geometry::clip_polygon(p_points, p_plane);
 }
 
+Array _Geometry::decompose_polygon_in_convex(const Vector<Vector2> &p_polygon) {
+	Vector<Vector<Point2>> polys = Geometry::decompose_polygon_in_convex(p_polygon);
+
+	Array ret;
+
+	for (int i = 0; i < polys.size(); ++i) {
+		ret.push_back(polys[i]);
+	}
+	return ret;
+}
+
 Array _Geometry::merge_polygons_2d(const Vector<Vector2> &p_polygon_a, const Vector<Vector2> &p_polygon_b) {
 	Vector<Vector<Point2>> polys = Geometry::merge_polygons_2d(p_polygon_a, p_polygon_b);
 
@@ -1840,6 +1851,8 @@ void _Geometry::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("triangulate_delaunay_2d", "points"), &_Geometry::triangulate_delaunay_2d);
 	ClassDB::bind_method(D_METHOD("convex_hull_2d", "points"), &_Geometry::convex_hull_2d);
 	ClassDB::bind_method(D_METHOD("clip_polygon", "points", "plane"), &_Geometry::clip_polygon);
+
+	ClassDB::bind_method(D_METHOD("decompose_polygon_in_convex", "polygon"), &_Geometry::decompose_polygon_in_convex);
 
 	ClassDB::bind_method(D_METHOD("merge_polygons_2d", "polygon_a", "polygon_b"), &_Geometry::merge_polygons_2d);
 	ClassDB::bind_method(D_METHOD("clip_polygons_2d", "polygon_a", "polygon_b"), &_Geometry::clip_polygons_2d);
